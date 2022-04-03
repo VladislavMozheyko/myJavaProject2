@@ -16,16 +16,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-    <github.global.server>github</github.global.server>
-    <github.maven-plugin>0.9</github.maven-plugin>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.example</groupId>
-      <artifactId>myJavaProject2</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -33,16 +26,6 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>[MavenTest]-mvn-repo</id>
-      <url>https://raw.github.com/[VladislavMozheyko]/[MavenTest]/mvn-repo/</url>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
-    </repository>
-  </repositories>
 
   <distributionManagement>
     <repository>
@@ -88,36 +71,11 @@
             <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
           </configuration>
         </plugin>
-        <plugin>
-          <groupId>com.github.github</groupId>
-          <artifactId>site-maven-plugin</artifactId>
-          <version>${github.maven-plugin}</version>
-          <configuration>
-            <message>Maven artifacts for ${project.version}</message>
-            <noJekyll>true</noJekyll>
-            <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-            <branch>refs/heads/mvn-repo</branch>
-            <includes><include>**/*</include></includes>
-            <repositoryName>MavenTest</repositoryName>
-            <repositoryOwner>VladislavMozheyko</repositoryOwner>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>site</goal>
-              </goals>
-              <phase>deploy</phase>
-            </execution>
-          </executions>
-        </plugin>
+
         <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
           <version>3.7.1</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
